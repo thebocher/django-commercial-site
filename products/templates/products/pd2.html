@@ -1,0 +1,50 @@
+{% extends "products/base.html" %}
+{% block title %}
+    {{ product.name }} 
+{% endblock %}
+
+{% block content%}
+<div class="detail-container">
+    <div class="product-detail">
+        <img src="{{ product.photo.url }}">
+        <div class="product-text-container">
+            <h1 class="product-name">{{ product.name }}</h3>
+            <button type="button" class="btn btn-success btn-add-to-cart btn-lg">Add to cart</button>
+            <h2 class="product-price d-inline">{{ product.price }}</h1>
+            <p class="product-description mt-4">{{ product.description }}</p>
+        </div>
+    </div>
+    {% for c in product.productcharacteristic_set.all %}
+        <div>{{ c.field_name }} : {{ c.field_value }}</div>
+    {% endfor %}
+    <div style="display: flex;">
+        <div class="leave-feedback">
+            <form method="POST">
+                <h3>Leave a feedback</h3>
+                <div class="feedback-attitude">
+                    {{ feedback_form.attitude }}
+                </div>
+                <div class="feedback-text">
+                    {{ feedback_form.description }}
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+        <div class="customers-feedbacks">
+            <h3>Feedbacks</h3>
+            {% for feedback in customers_feedbacks %}
+                <div class="feedback">
+                    <p class="feedback-customer-name mb-1">{{ feedback.customer.first_name }} {{ feedback.customer.last_name }}</p>
+                    {% if feedback.attitude == "POS" %}
+                        <span class="feedback-positive">Positive</span>
+                    {% else %}
+                        <span class="feedback-negative d-inline">Negative</span>
+                    {% endif %}
+                    <p class="feedback-description mt-2">{{ feedback.description}}</p>
+    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

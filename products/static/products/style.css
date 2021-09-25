@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+}
+.pfp {
+    position: relative;
+    z-index: 1000;
+    height: 40px;
+}
+.pfp-div:hover  + .customer-data, .customer-data:hover {
+    display: block;
+}
+.product-detail {
+    height: 600px;
+    margin: 10px 10px 0px 10px;
+}
+.name {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+.price {
+    font-size: 38px;
+}
+/* .feedback {
+    height: 250px; 
+}*/
+ .products-container {
+    padding: 5px;
+    align-items: center;
+}
+
+.product {
+    display: inline-block;
+    padding: 3px;
+    margin: 5px;
+    background-color: rgb(238, 238, 238);
+    height: 220px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.product-url, .product-url:link, .product-url:visited, .product-url:hover, .product-url:active {
+    color: black;
+    text-decoration: none;
+    user-select: text;
+}
+
+.product img {
+    height: auto;
+    max-width: 100%;
+}
+.product h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+.product h3 {
+    font-size: 20px;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    /* left: 100%;
+    transform: translateX(-100%); */
+    width: fit-content;
+}
+.add-to-cart-btn {
+    /* margin-left: 100%; */
+    position: relative;
+    display: inline-block;
+    /* left: 100%;
+    transform: translateX(-130%); */
+}
+.feedback-text textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+}
+.feedback-positive {
+    color: rgb(0, 172, 0);
+}
+.feedback-negative {
+    color: rgb(231, 0, 0);
+}
+.feedback form {
+    padding: 0;
+    margin: 0;
+}
+.feedback {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 5px;
+}
+.btn-add-to-cart {
+    width: fit-content;
+    margin-bottom: 20px;
+
+}
+.charasteristic {
+    padding: 2px 5px;
+    margin: 1px;
+    background-color: rgb(228, 228, 228);
+}
+
+.filter {
+    max-width: 210px;
+    border: 1px solid #198754;
+    padding: 10px;
+    margin: 5px;
+    margin-top: 12px;
+    border-radius: 7px;
+    /* height: 100%; */
+    /* background-color: green; */
+}
+.characteristics-div {
+    max-height: 600px;
+    overflow: auto;
+}

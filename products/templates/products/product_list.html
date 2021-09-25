@@ -1,0 +1,41 @@
+{% extends "products/base.html" %}
+{% block title %}
+    Products
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="filter col-2">
+                <h6>Price</h6>
+                From 
+                <input style="width: 60px; line-height: 8px; border-radius: 5px; border: 1px solid #198754" type="text">
+                to
+                <input style="width: 60px; line-height: 8px; border-radius: 5px; border: 1px solid #198754" type="text">
+                {% if category_filters %}
+                    {% for category in category_filters %}
+                        {% if category.for_filter %}
+                            <h6>{{ category.field_name }}</h6>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="products-container col">
+                {% for product in product_list %}
+                <div class="product col-xs">
+                    <a class="product-url" href="/product/{{ product.pk }}">
+                        <img src="{{ product.photo.url }}">
+                    </a>
+                    <h5>{{ product.name }}</h5>
+                    <div class='justify-content-center d-flex align-items-center float-end'>
+                        <h3 class="m-0 float-end d-inline-block">{{ product.price }}</h3>
+                        <button type="button" class="btn btn-outline-success float-end">Add to cart</button>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

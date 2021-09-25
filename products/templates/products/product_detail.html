@@ -1,0 +1,58 @@
+{% extends "products/base.html" %}
+{% block title %}
+    {{ product.name }} 
+{% endblock %}
+
+{% block content%}
+    <div class="detail-container container-fluid">
+        <div class="row product-detail">
+            <div class="col-4">
+                <img class="img img-fluid" src="{{ product.photo.url }}">
+            </div>
+            <div class="col-2">
+                <div class="row name">{{ product.name }}</div>
+                <div class="row price">{{ product.price }}</div>
+                <div class="row">
+                    <button type="button" class="btn btn-success btn-add-to-cart btn-lg">Add to cart</button>
+                </div>
+                <div class="row">{{ product.description }}</div>
+            </div>
+            <div class="col characteristics-div">
+                <h3>Characteristics</h3>
+                {% for c in product.productcharacteristic_set.all %}
+                    <div class="row ">
+                        <div class="col charasteristic">{{ c.field_name }}</div>
+                        <div class="col charasteristic">{{ c.field_value }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product-detail">
+            <div class="feedback">
+                <h3>Leave a feedback</h3>
+                <form method="POST">
+                    <div class="feedback-attitude">
+                        {{ feedback_form.attitude }}
+                    </div>
+                    <div class="feedback-text">
+                        {{ feedback_form.description }}
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+            <div class="">
+                {% for feedback in customers_feedbacks %}
+                <div class="feedback">
+                    <p class="feedback-customer-name mb-1">{{ feedback.customer.first_name }} {{ feedback.customer.last_name }}</p>
+                    {% if feedback.attitude == "POS" %}
+                        <span class="feedback-positive">Positive</span>
+                    {% else %}
+                        <span class="feedback-negative d-inline">Negative</span>
+                    {% endif %}
+                    <p class="feedback-description mt-2">{{ feedback.description}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
