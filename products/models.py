@@ -10,9 +10,30 @@ ATTITUDE_CHOICES = [
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, null=True)
     
-    def __str__(self):
-        return self.name
+    def __str__(self):                           
+        full_path = [self.name]                  
+        k = self.parent
+        while k is not None:
+            full_path.append(k.name)
+            k = k.parent
+        return ' -> '.join(full_path[::-1])
+    
+    @classmethod
+    def get_dict(cls):
+        def f(category, category_dict={}):
+            category_dict[category] = {}
+            
+            for c in category.children.all():
+                category_dict[category] = f(c, category_dict[category])
+            return category_dict
+
+        categories = cls.objects.filter(parent=None)
+        d = {}
+        for category_parent in categories:
+            d[category_parent] = f(category_parent)
+        return d
 
 class CategoryTemplate(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

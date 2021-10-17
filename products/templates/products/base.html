@@ -30,10 +30,19 @@
                   Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% for category in categories %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'products:index' %}?category={{ category.name }}">{{ category.name }}</a>
-                    </li>
+                  {% for category, sub_category in categories.items %}
+                    {% if sub_category %}
+                      <li>
+                        <a class="dropdown-item" href="{% url 'products:index' %}?category={{ category.name }}">{{ category.name }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          {{ loop(sub_category) }}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li>
+                          <a class="dropdown-item" href="{% url 'products:index' %}?category={{ category.name }}">{{ category.name }}</a>
+                      </li>
+                    {% endif %}
                   {% endfor %}
                 </ul>
               </li>

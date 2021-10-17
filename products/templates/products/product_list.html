@@ -22,7 +22,7 @@
             <div class="products-container col">
                 {% for product in product_list %}
                 <div class="product col-xs">
-                    <a class="product-url" href="/product/{{ product.pk }}">
+                    <a class="product-url" href="{% url 'products:product' product.pk %}">
                         <img src="{{ product.photo.url }}">
                     </a>
                     <h5>{{ product.name }}</h5>
